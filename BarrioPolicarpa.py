@@ -1,6 +1,16 @@
 import networkx as nx
 import matplotlib.pyplot as plt
 
+def es_accesible_desde_cualquier_punto(G):
+    for nodo in G.nodes:
+        for otro_nodo in G.nodes:
+            if nodo != otro_nodo:
+                # Intenta encontrar un camino desde "nodo" a "otro_nodo"
+                if not nx.has_path(G, nodo, otro_nodo):
+                    return False
+
+    return True
+
 
 G = nx.DiGraph()
 
@@ -175,7 +185,7 @@ G.add_edge("33","32")
 G.add_edge("33","29")
 G.add_edge("29","33")
 
-G.add_edge("33","34")
+
 G.add_edge("34","33")
 
 G.add_edge("30","35")
@@ -201,7 +211,7 @@ G.add_edge("33","38")
 G.add_edge("38","39")
 G.add_edge("39","38")
 
-G.add_edge("34","39")
+
 G.add_edge("39","34")
 
 G.add_edge("35","40")
@@ -231,7 +241,7 @@ G.add_edge("44","45")
 G.add_edge("45","44")
 
 G.add_edge("45","39")
-G.add_edge("39","45")
+
 
 G.add_edge("40","47")
 G.add_edge("47","40")
@@ -257,7 +267,7 @@ G.add_edge("51","52")
 G.add_edge("52","51")
 
 G.add_edge("52","45")
-G.add_edge("45","52")
+
 
 G.add_edge("47","53")
 G.add_edge("53","47")
@@ -285,10 +295,10 @@ G.add_edge("51","57")
 G.add_edge("57","58")
 G.add_edge("58","57")
 
-G.add_edge("52","58")
+
 G.add_edge("58","52")
 
-G.add_edge("58","63")
+
 G.add_edge("63","58")
 
 G.add_edge("57","62")
@@ -319,10 +329,10 @@ G.add_edge("46","49")
 
 
 node_positions = {
-    "1": (0, 0),
-    "2": (2, 0),
-    "3": (4, 0),
-    "4": (6, 0),
+    "1": (0, -2),
+    "2": (2, -2),
+    "3": (4, -2),
+    "4": (6, -2),
     "5": (0, -4),
     "6": (2, -4),
     "7": (4, -4),
@@ -384,10 +394,16 @@ node_positions = {
     "63": (7, -28),
 }
 
+# Llamar a la función para verificar la accesibilidad
+accesibilidad = es_accesible_desde_cualquier_punto(G)
 
+if accesibilidad:
+    print("Es posible viajar desde cualquier punto a cualquier otro en el Barrio Policarpa.")
+else:
+    print("No es posible viajar desde cualquier punto a cualquier otro en el Barrio Policarpa.")
 
 plt.figure(figsize=(10, 10))  
-nx.draw(G, pos=node_positions, with_labels=True, node_size=500, node_color='red', font_size=12, font_color='white', font_weight='bold')
+nx.draw(G, pos=node_positions, with_labels=True, node_size=300, node_color='red', font_size=12, font_color='white', font_weight='bold')
 
 
 plt.title("Grafo Dirigido")
