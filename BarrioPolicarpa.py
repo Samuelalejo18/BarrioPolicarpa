@@ -1,10 +1,8 @@
 import networkx as nx
 import matplotlib.pyplot as plt
 
-# Crear un objeto de gráfico dirigido sin pesos en los arcos
-G = nx.DiGraph()
 
-# Agregar nodos al gráfico
+G = nx.DiGraph()
 
 G.add_node("1")
 G.add_node("2")
@@ -69,7 +67,6 @@ G.add_node("60")
 G.add_node("61")
 G.add_node("62")
 G.add_node("63")
-# Agregar arcos sin pesos
 
 G.add_edge("1","2")
 G.add_edge("2","3")
@@ -135,21 +132,21 @@ G.add_edge("16","20")
 G.add_edge("17","21")
 G.add_edge("21","17")
 
-#G.add_edge("22","23")
-#G.add_edge("23","22")
+G.add_edge("22","23")
+G.add_edge("23","22")
 G.add_edge("23","18")
 G.add_edge("18","23")
 G.add_edge("23","24")
 G.add_edge("24","23")
 G.add_edge("19","24")
 G.add_edge("24","19")
-#G.add_edge("24","25")
-#G.add_edge("25","24")
+G.add_edge("24","25")
+G.add_edge("25","24")
 G.add_edge("20","29")
 G.add_edge("29","20")
 
-#G.add_edge("26","27")
-#G.add_edge("27","26")
+G.add_edge("26","27")
+G.add_edge("27","26")
 G.add_edge("23","27")
 G.add_edge("27","23")
 G.add_edge("24","28")
@@ -312,19 +309,84 @@ G.add_edge("60","59")
 
 G.add_edge("59","53")
 G.add_edge("53","59")
+G.add_edge("43","46")
+G.add_edge("46","43")
+G.add_edge("46","50")
+G.add_edge("50","46")
+
+G.add_edge("49","46")
+G.add_edge("46","49")
 
 
+node_positions = {
+    "1": (0, 0),
+    "2": (2, 0),
+    "3": (4, 0),
+    "4": (6, 0),
+    "5": (0, -4),
+    "6": (2, -4),
+    "7": (4, -4),
+    "8": (6, -4),
+    "9": (0, -6),
+    "10": (2, -6),
+    "11": (4, -6),
+    "12": (6, -6),
+    "13": (0, -8),
+    "14": (2, -8),
+    "15": (4, -8),
+    "16": (6, -8),
+    "17": (0, -10),
+    "18": (2, -10),
+    "19": (4, -10),
+    "20": (6, -10),
+    "21": (0, -13),
+    "22": (1, -12),
+    "23": (2, -12),
+    "24": (4, -12),
+    "25": (5.4, -12),
+    "26": (1, -14),
+    "27": (2, -14),
+    "28": (4, -14),
+    "29": (6, -14),
+    "30": (0, -16),
+    "31": (2, -16),
+    "32": (4, -16),
+    "33": (6, -16),
+    "34": (7, -16),
+    "35": (0, -18),
+    "36": (2, -18),
+    "37": (4, -18),
+    "38": (6, -18),
+    "39": (7, -18),
+    "40": (0, -20),
+    "41": (1.5, -20),
+    "42": (2, -20),
+    "43": (4, -20),
+    "44": (6, -20),
+    "45": (7, -20),
+    "46": (4, -21),
+    "47": (0, -22),
+    "48": (1.5, -22),
+    "49": (3.5, -21),
+    "50": (4, -23),
+    "51": (6, -23),
+    "52": (7, -23),
+    "53": (0, -25),
+    "54": (1.5, -25),
+    "55": (4, -25),
+    "56": (4, -26),
+    "57": (6, -26),
+    "58": (7, -26),
+    "59": (0, -28),
+    "60": (1.5, -28),
+    "61": (4, -28),
+    "62": (6, -28),
+    "63": (7, -28),
+}
 
+plt.figure(figsize=(10, 10))  # Ajusta el tamaño del gráfico si es necesario
+nx.draw(G, pos=node_positions, with_labels=True, node_size=500, node_color='skyblue', font_size=12, font_color='black', font_weight='bold')
 
-# Obtener todos los nodos en el gráfico
-nodes = G.nodes()
-
-# Obtener todos los arcos en el gráfico
-edges = G.edges()
-
-# Dibuja el gráfico
-pos = nx.spring_layout(G)  # Define una disposición de los nodos
-nx.draw(G, pos, with_labels=True, node_size=500, node_color='skyblue', font_size=12, font_color='black', font_weight='bold')
 plt.title("Grafo Dirigido")
 plt.show()
 
