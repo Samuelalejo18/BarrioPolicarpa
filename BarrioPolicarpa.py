@@ -384,9 +384,11 @@ node_positions = {
     "63": (7, -28),
 }
 
-plt.figure(figsize=(10, 10))  # Ajusta el tamaño del gráfico si es necesario
-nx.draw(G, pos=node_positions, with_labels=True, node_size=500, node_color='skyblue', font_size=12, font_color='black', font_weight='bold')
+
+
+plt.figure(figsize=(10, 10))  
+nx.draw(G, pos=node_positions, with_labels=True, node_size=500, node_color='red', font_size=12, font_color='white', font_weight='bold')
+
 
 plt.title("Grafo Dirigido")
 plt.show()
-
