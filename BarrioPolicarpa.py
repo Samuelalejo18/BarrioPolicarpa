@@ -1,16 +1,17 @@
 import networkx as nx
 import matplotlib.pyplot as plt
 
-def es_accesible_desde_cualquier_punto(G):
+
+def nodos_sin_camino_ida_vuelta(G):
+    nodos_sin_camino = []
     for nodo in G.nodes:
         for otro_nodo in G.nodes:
             if nodo != otro_nodo:
-                # Intenta encontrar un camino desde "nodo" a "otro_nodo"
-                if not nx.has_path(G, nodo, otro_nodo):
-                    return False
+                if not (nx.has_path(G, nodo, otro_nodo) and nx.has_path(G, otro_nodo, nodo)):
 
-    return True
+                    nodos_sin_camino.append((nodo, otro_nodo))
 
+    return nodos_sin_camino
 
 G = nx.DiGraph()
 
@@ -394,15 +395,16 @@ node_positions = {
     "63": (7, -28),
 }
 
-# Llamar a la función para verificar la accesibilidad
-accesibilidad = es_accesible_desde_cualquier_punto(G)
+nodos_sin_camino = nodos_sin_camino_ida_vuelta(G)
 
-if accesibilidad:
-    print("Es posible viajar desde cualquier punto a cualquier otro en el Barrio Policarpa.")
+if not nodos_sin_camino:
+    print("El grafo es fuertemente conexo, tiene camino de ida y vuelta entre todos los nodos. Por lo tanto es posible viajar desde cualquier punto A a B")
 else:
-    print("No es posible viajar desde cualquier punto a cualquier otro en el Barrio Policarpa.")
-
-plt.figure(figsize=(10, 10))  
+    print("El grafo no es fuertemente conexo, no tiene camino de ida y vuelta entre los siguientes nodos:")
+    for par in nodos_sin_camino:
+        print(par)
+    print("Por lo tanto es posible viajar desde cualquier punto A a B")
+plt.figure(figsize=(10, 10))
 nx.draw(G, pos=node_positions, with_labels=True, node_size=300, node_color='red', font_size=12, font_color='white', font_weight='bold')
 
 
