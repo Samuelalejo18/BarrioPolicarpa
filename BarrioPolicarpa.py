@@ -14,18 +14,6 @@ def nodos_sin_camino_ida_vuelta(G):
     return nodos_sin_camino
 
 G = nx.DiGraph()
-nodos_sin_camino = nodos_sin_camino_ida_vuelta(G)
-
-if not nodos_sin_camino:
-    print("El grafo es fuertemente conexo, tiene camino de ida y vuelta entre todos los nodos. Por lo tanto es posible viajar desde cualquier punto A a B")
-else:
-    print("El grafo no es fuertemente conexo, no tiene camino de ida y vuelta entre los siguientes nodos:")
-    for par in nodos_sin_camino:
-        print(par)
-    print("Por lo tanto es posible viajar desde cualquier punto A a B")
-
-
-
 
 G.add_node("1")
 G.add_node("2")
@@ -341,7 +329,6 @@ G.add_edge("49","46")
 G.add_edge("46","49")
 
 
-
 node_positions = {
     "1": (0, -2),
     "2": (2, -2),
@@ -411,12 +398,12 @@ node_positions = {
 nodos_sin_camino = nodos_sin_camino_ida_vuelta(G)
 
 if not nodos_sin_camino:
-    print("El grafo es fuertemente conexo, tiene camino de ida y vuelta entre todos los nodos. Por lo tanto es posible viajar desde cualquier punto A a B")
+    print("El grafo es fuertemente conexo, tiene camino de ida y vuelta entre todos los nodos, Por lo tanto es posible viajar desde cualquier punto A a B")
 else:
     print("El grafo no es fuertemente conexo, no tiene camino de ida y vuelta entre los siguientes nodos:")
     for par in nodos_sin_camino:
         print(par)
-    print("Por lo tanto es posible viajar desde cualquier punto A a B")
+    print("Por lo tanto, no es posible viajar desde cualquier punto A a B")
 plt.figure(figsize=(10, 10))
 nx.draw(G, pos=node_positions, with_labels=True, node_size=300, node_color='red', font_size=12, font_color='white', font_weight='bold')
 
